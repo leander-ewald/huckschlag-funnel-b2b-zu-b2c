@@ -23,9 +23,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Logistikpartner werden | Spedition Huckschlag",
+  title: "In 60 Sekunden zur passenden Logistikl\u00f6sung | Spedition Huckschlag",
   description:
-    "Werden Sie Logistikpartner der Spedition Huckschlag GmbH. Attraktive Konditionen, pünktliche Bezahlung und langfristige Partnerschaft im Nahverkehr.",
+    "Erhalte in nur 60 Sekunden die passende Logistikl\u00f6sung f\u00fcr dein Unternehmen. Spedition Huckschlag \u2013 Die Logistikmacher seit 40+ Jahren.",
   robots: "noindex, nofollow",
 };
 

@@ -2,86 +2,132 @@
 
 import { useState, useCallback } from "react";
 import {
+  Package,
+  Mail,
+  TrendingUp,
   Truck,
+  ShoppingBag,
+  Cpu,
+  Sparkles,
+  Home,
+  BookOpen,
+  Leaf,
+  Building2,
   Users,
-  ShieldCheck,
-  MapPin,
-  Clock,
-  UserCircle,
   CheckCircle2,
   ChevronRight,
   ChevronLeft,
+  Zap,
+  Clock,
+  Warehouse,
+  RotateCcw,
+  User,
+  AlertTriangle,
+  Banknote,
+  MapPin,
+  Globe,
+  FileText,
+  ShoppingCart,
+  Code,
+  Wallet,
+  BarChart3,
   Phone,
-  Mail,
   ArrowRight,
   Star,
-  Building2,
+  ShieldCheck,
   Loader2,
+  Lock,
 } from "lucide-react";
 
 /* ══════════════════════════════════════════════════════════════
    TYPES
    ══════════════════════════════════════════════════════════════ */
 interface FunnelFormData {
-  vehicleType: string;
-  fleetSize: string;
-  certifications: string[];
-  experience: string;
+  deliveryVolume: string;
+  goodsTypes: string[];
+  targetAudience: string;
+  services: string[];
+  challenges: string[];
   region: string;
-  firstName: string;
-  lastName: string;
+  productDescription: string;
+  shopSystem: string;
+  budget: string;
+  name: string;
+  company: string;
   email: string;
   phone: string;
-  company: string;
-  message: string;
+  website: string;
+  privacy: boolean;
 }
 
 /* ══════════════════════════════════════════════════════════════
-   STEP DEFINITIONS
+   OPTION DEFINITIONS — Original Huckschlag Funnel Content
    ══════════════════════════════════════════════════════════════ */
-const STEPS = [
-  { id: "vehicle", label: "Fahrzeug", icon: Truck },
-  { id: "fleet", label: "Flotte", icon: Users },
-  { id: "certs", label: "Qualifikation", icon: ShieldCheck },
-  { id: "experience", label: "Erfahrung", icon: Clock },
-  { id: "region", label: "Region", icon: MapPin },
-  { id: "contact", label: "Kontakt", icon: UserCircle },
-] as const;
-
-const VEHICLE_OPTIONS = [
-  { value: "7_5t", label: "7,5 t", desc: "Verteilerfahrzeug" },
-  { value: "12t", label: "12 t", desc: "Verteilerfahrzeug" },
-  { value: "12t_trailer", label: "12 t + Anhänger", desc: "Gliederzug" },
-  { value: "other", label: "Andere", desc: "Sonstige Fahrzeuge" },
+const DELIVERY_OPTIONS = [
+  { value: "lt100", label: "<100", icon: Mail },
+  { value: "100-1000", label: "100 \u2013 1.000", icon: Package },
+  { value: "1000-5000", label: "1.000 \u2013 5.000", icon: TrendingUp },
+  { value: "gt5000", label: ">5.000", icon: Truck },
 ];
 
-const FLEET_OPTIONS = [
-  { value: "1", label: "1 Fahrzeug" },
-  { value: "2-3", label: "2\u20133 Fahrzeuge" },
-  { value: "4-10", label: "4\u201310 Fahrzeuge" },
-  { value: "10+", label: "10+ Fahrzeuge" },
+const GOODS_OPTIONS = [
+  { value: "konsumgueter", label: "Konsumg\u00fcter", desc: "z.\u00a0B. Kleidung, Schuhe, Accessoires, Schmuck", icon: ShoppingBag },
+  { value: "elektronik", label: "Elektronik", desc: "z.\u00a0B. Kopfh\u00f6rer, Handy-Zubeh\u00f6r", icon: Cpu },
+  { value: "kosmetik", label: "Kosmetik & Pflegeprodukte", desc: "z.\u00a0B. Drogeriebedarf, Cremes, Make-up", icon: Sparkles },
+  { value: "haushalt", label: "Haushaltswaren", desc: "z.\u00a0B. K\u00fcchenartikel, Deko, M\u00f6bel, Geb\u00e4udeausstattung", icon: Home },
+  { value: "buecher", label: "B\u00fccher & Medien", desc: "z.\u00a0B. B\u00fccher, Hefte", icon: BookOpen },
+  { value: "nahrungsmittel", label: "Nahrungsmittel", desc: "z.\u00a0B. Erg\u00e4nzungsprodukte, Trockenprodukte", icon: Leaf },
+  { value: "sonstiges_waren", label: "Sonstiges", desc: "z.\u00a0B. Spielzeug, Geschenkartikel, Heimtierbedarf", icon: Package },
 ];
 
-const CERT_OPTIONS = [
-  { value: "adr", label: "ADR-Schein", desc: "Gefahrgutbescheinigung" },
-  { value: "bkrfqg", label: "BKrFQG", desc: "Berufskraftfahrer-Qualifikation" },
-  { value: "eu_license", label: "EU-Lizenz", desc: "Gemeinschaftslizenz" },
-  { value: "gmp", label: "GMP+", desc: "Lebensmitteltransport" },
+const TARGET_OPTIONS = [
+  { value: "b2b", label: "B2B", icon: Building2 },
+  { value: "b2c", label: "B2C", icon: Users },
+  { value: "beides", label: "Beides", icon: CheckCircle2 },
 ];
 
-const EXPERIENCE_OPTIONS = [
-  { value: "0-1", label: "< 1 Jahr" },
-  { value: "1-3", label: "1\u20133 Jahre" },
-  { value: "3-10", label: "3\u201310 Jahre" },
-  { value: "10+", label: "10+ Jahre" },
+const SERVICE_OPTIONS = [
+  { value: "standard", label: "Standardversand", icon: Package },
+  { value: "express", label: "Expressversand", icon: Zap },
+  { value: "sameday", label: "Same / Next-Day", icon: Clock },
+  { value: "palette", label: "Palettenversand", icon: Truck },
+  { value: "lagerung", label: "Lagerung", icon: Warehouse },
+  { value: "retouren", label: "Retourenlogistik", icon: RotateCcw },
+];
+
+const CHALLENGE_OPTIONS = [
+  { value: "onemanshow", label: "One Man Show", icon: User },
+  { value: "unzuverlaessig", label: "Unzuverl\u00e4ssige Spedition", icon: AlertTriangle },
+  { value: "kosten", label: "Zu hohe Kosten", icon: Banknote },
+  { value: "skalierbarkeit", label: "Skalierbarkeit fehlt", icon: TrendingUp },
+  { value: "retouren", label: "Viele Retouren", icon: RotateCcw },
 ];
 
 const REGION_OPTIONS = [
-  { value: "nrw", label: "Nordrhein-Westfalen" },
-  { value: "niedersachsen", label: "Niedersachsen" },
-  { value: "hessen", label: "Hessen" },
-  { value: "other", label: "Andere Region" },
+  { value: "deutschland", label: "Deutschlandweit", icon: MapPin },
+  { value: "dach", label: "DACH", icon: MapPin },
+  { value: "eu", label: "EU-weit", icon: Globe },
+  { value: "international", label: "International", icon: Globe },
 ];
+
+const SHOP_OPTIONS = [
+  { value: "shopify", label: "Shopify", icon: ShoppingCart },
+  { value: "shopware", label: "Shopware", icon: ShoppingCart },
+  { value: "woocommerce", label: "WooCommerce", icon: ShoppingCart },
+  { value: "magento", label: "Magento", icon: ShoppingCart },
+  { value: "eigenloesung", label: "Eigenl\u00f6sung", icon: Code },
+  { value: "sonstiges_shop", label: "Sonstiges", icon: Code },
+];
+
+const BUDGET_OPTIONS = [
+  { value: "lt1000", label: "<1.000 \u20ac", icon: Wallet },
+  { value: "1000-5000", label: "1.000\u20135.000 \u20ac", icon: Banknote },
+  { value: "5000-20000", label: "5.000\u201320.000 \u20ac", icon: TrendingUp },
+  { value: "gt20000", label: ">20.000 \u20ac", icon: BarChart3 },
+];
+
+const TOTAL_QUESTIONS = 9;
+const TOTAL_STEPS = TOTAL_QUESTIONS + 1; // +1 for contact form
 
 /* ══════════════════════════════════════════════════════════════
    MAIN COMPONENT
@@ -92,21 +138,24 @@ export default function FunnelPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState<FunnelFormData>({
-    vehicleType: "",
-    fleetSize: "",
-    certifications: [],
-    experience: "",
+    deliveryVolume: "",
+    goodsTypes: [],
+    targetAudience: "",
+    services: [],
+    challenges: [],
     region: "",
-    firstName: "",
-    lastName: "",
+    productDescription: "",
+    shopSystem: "",
+    budget: "",
+    name: "",
+    company: "",
     email: "",
     phone: "",
-    company: "",
-    message: "",
+    website: "",
+    privacy: false,
   });
 
-  const totalSteps = STEPS.length;
-  const progress = ((step + 1) / totalSteps) * 100;
+  const progress = ((step + 1) / TOTAL_STEPS) * 100;
 
   const updateField = useCallback(
     <K extends keyof FunnelFormData>(key: K, value: FunnelFormData[K]) => {
@@ -115,33 +164,37 @@ export default function FunnelPage() {
     []
   );
 
-  const toggleCert = useCallback((cert: string) => {
+  const toggleMulti = useCallback((key: "goodsTypes" | "services" | "challenges", value: string) => {
     setFormData((prev) => ({
       ...prev,
-      certifications: prev.certifications.includes(cert)
-        ? prev.certifications.filter((c) => c !== cert)
-        : [...prev.certifications, cert],
+      [key]: (prev[key] as string[]).includes(value)
+        ? (prev[key] as string[]).filter((v) => v !== value)
+        : [...(prev[key] as string[]), value],
     }));
   }, []);
 
   const canProceed = (): boolean => {
     switch (step) {
-      case 0: return !!formData.vehicleType;
-      case 1: return !!formData.fleetSize;
-      case 2: return formData.certifications.length > 0;
-      case 3: return !!formData.experience;
-      case 4: return !!formData.region;
-      case 5: {
-        const hasRequired = !!formData.firstName && !!formData.lastName && !!formData.phone;
-        const emailValid = !formData.email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
-        return hasRequired && emailValid;
+      case 0: return !!formData.deliveryVolume;
+      case 1: return formData.goodsTypes.length > 0;
+      case 2: return !!formData.targetAudience;
+      case 3: return formData.services.length > 0;
+      case 4: return formData.challenges.length > 0;
+      case 5: return !!formData.region;
+      case 6: return formData.productDescription.trim().length > 0;
+      case 7: return !!formData.shopSystem;
+      case 8: return !!formData.budget;
+      case 9: {
+        const hasRequired = !!formData.name && !!formData.email && !!formData.phone;
+        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+        return hasRequired && emailValid && formData.privacy;
       }
       default: return false;
     }
   };
 
   const next = () => {
-    if (step < totalSteps - 1 && canProceed()) setStep(step + 1);
+    if (step < TOTAL_STEPS - 1 && canProceed()) setStep(step + 1);
   };
 
   const prev = () => {
@@ -162,7 +215,7 @@ export default function FunnelPage() {
 
       if (!res.ok) {
         const body = await res.json().catch(() => null);
-        throw new Error(body?.error || "Übermittlung fehlgeschlagen");
+        throw new Error(body?.error || "\u00dcbermittlung fehlgeschlagen");
       }
 
       setSubmitted(true);
@@ -171,6 +224,12 @@ export default function FunnelPage() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const stepLabel = (): string => {
+    if (step <= 7) return `Frage ${step + 1} von 8`;
+    if (step === 8) return "Letzte Frage";
+    return "Kontakt";
   };
 
   /* ── SUCCESS STATE ── */
@@ -185,19 +244,19 @@ export default function FunnelPage() {
             Vielen Dank!
           </h1>
           <p className="text-gray-600 mb-2">
-            Ihre Bewerbung als Logistikpartner ist bei uns eingegangen.
+            Deine Anfrage ist bei uns eingegangen.
           </p>
           <p className="text-gray-600 mb-8">
-            Wir melden uns innerhalb von <strong>24 Stunden</strong> bei Ihnen.
+            Wir melden uns innerhalb von <strong>24 Stunden</strong> bei dir.
           </p>
           <div className="bg-gray-100 rounded-xl p-5 text-left space-y-2 text-sm">
-            <p><span className="text-gray-400">Name:</span> <strong>{formData.firstName} {formData.lastName}</strong></p>
+            <p><span className="text-gray-400">Name:</span> <strong>{formData.name}</strong></p>
             <p><span className="text-gray-400">Telefon:</span> <strong>{formData.phone}</strong></p>
-            {formData.email && <p><span className="text-gray-400">E-Mail:</span> <strong>{formData.email}</strong></p>}
+            <p><span className="text-gray-400">E-Mail:</span> <strong>{formData.email}</strong></p>
             {formData.company && <p><span className="text-gray-400">Unternehmen:</span> <strong>{formData.company}</strong></p>}
           </div>
           <div className="mt-8 pt-6 border-t border-gray-200 text-sm text-gray-400">
-            Spedition Huckschlag GmbH · Landstr. 2 · 58730 Fröndenberg
+            Spedition Huckschlag GmbH &middot; Landstr. 2 &middot; 58730 Fr\u00f6ndenberg
           </div>
         </div>
       </div>
@@ -216,11 +275,11 @@ export default function FunnelPage() {
             </div>
             <div>
               <p className="text-white font-bold text-sm leading-tight">Spedition Huckschlag</p>
-              <p className="text-white/50 text-xs">Logistikpartner werden</p>
+              <p className="text-white/50 text-xs">Logistikl\u00f6sung in 60 Sekunden</p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-white/50 text-xs">Schritt {step + 1} von {totalSteps}</p>
+            <p className="text-white/50 text-xs">{stepLabel()}</p>
           </div>
         </div>
       </header>
@@ -234,29 +293,6 @@ export default function FunnelPage() {
               style={{ width: `${progress}%` }}
             />
           </div>
-          {/* Step indicators — desktop only */}
-          <div className="hidden sm:flex justify-between mt-3">
-            {STEPS.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <button
-                  key={s.id}
-                  onClick={() => i < step && setStep(i)}
-                  disabled={i > step}
-                  className={`flex items-center gap-1.5 text-xs transition-colors ${
-                    i === step
-                      ? "text-green font-semibold"
-                      : i < step
-                      ? "text-white/60 cursor-pointer hover:text-white/80"
-                      : "text-white/20 cursor-default"
-                  }`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {s.label}
-                </button>
-              );
-            })}
-          </div>
         </div>
       </div>
 
@@ -264,12 +300,16 @@ export default function FunnelPage() {
       <div className="flex-1 flex items-center justify-center px-4 py-6 sm:py-8">
         <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden">
           <div className="p-6 sm:p-8 md:p-10">
-            {step === 0 && <StepVehicle value={formData.vehicleType} onChange={(v) => updateField("vehicleType", v)} />}
-            {step === 1 && <StepFleet value={formData.fleetSize} onChange={(v) => updateField("fleetSize", v)} />}
-            {step === 2 && <StepCerts selected={formData.certifications} onToggle={toggleCert} />}
-            {step === 3 && <StepExperience value={formData.experience} onChange={(v) => updateField("experience", v)} />}
-            {step === 4 && <StepRegion value={formData.region} onChange={(v) => updateField("region", v)} />}
-            {step === 5 && <StepContact formData={formData} updateField={updateField} />}
+            {step === 0 && <StepDelivery value={formData.deliveryVolume} onChange={(v) => updateField("deliveryVolume", v)} />}
+            {step === 1 && <StepGoods selected={formData.goodsTypes} onToggle={(v) => toggleMulti("goodsTypes", v)} />}
+            {step === 2 && <StepTarget value={formData.targetAudience} onChange={(v) => updateField("targetAudience", v)} />}
+            {step === 3 && <StepServices selected={formData.services} onToggle={(v) => toggleMulti("services", v)} />}
+            {step === 4 && <StepChallenges selected={formData.challenges} onToggle={(v) => toggleMulti("challenges", v)} />}
+            {step === 5 && <StepRegion value={formData.region} onChange={(v) => updateField("region", v)} />}
+            {step === 6 && <StepProducts value={formData.productDescription} onChange={(v) => updateField("productDescription", v)} />}
+            {step === 7 && <StepShop value={formData.shopSystem} onChange={(v) => updateField("shopSystem", v)} />}
+            {step === 8 && <StepBudget value={formData.budget} onChange={(v) => updateField("budget", v)} />}
+            {step === 9 && <StepContact formData={formData} updateField={updateField} />}
           </div>
 
           {/* Error message */}
@@ -293,10 +333,10 @@ export default function FunnelPage() {
               }`}
             >
               <ChevronLeft className="w-4 h-4" />
-              Zurück
+              Zur\u00fcck
             </button>
 
-            {step < totalSteps - 1 ? (
+            {step < TOTAL_STEPS - 1 ? (
               <button
                 onClick={next}
                 disabled={!canProceed()}
@@ -322,11 +362,11 @@ export default function FunnelPage() {
                 {submitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Wird gesendet…
+                    Wird gesendet\u2026
                   </>
                 ) : (
                   <>
-                    Bewerbung absenden
+                    Jetzt kostenloses Gespr\u00e4ch sichern
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
@@ -340,20 +380,20 @@ export default function FunnelPage() {
       <footer className="px-4 pb-5 sm:pb-6">
         <div className="max-w-2xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/40">
           <span className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            100% vertraulich
+            <Lock className="w-3.5 h-3.5" />
+            Sichere Verbindung
           </span>
           <span className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5" />
-            Antwort in 24h
+            <ShieldCheck className="w-3.5 h-3.5" />
+            Kein Spam
           </span>
           <span className="flex items-center gap-1.5">
             <Star className="w-3.5 h-3.5" />
-            Seit 1971
+            Seit 40+ Jahren
           </span>
           <span className="flex items-center gap-1.5">
             <Truck className="w-3.5 h-3.5" />
-            60+ eigene Fahrzeuge
+            145 Mitarbeitende
           </span>
         </div>
       </footer>
@@ -365,61 +405,91 @@ export default function FunnelPage() {
    STEP COMPONENTS
    ══════════════════════════════════════════════════════════════ */
 
-function StepVehicle({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+function StepDelivery({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
     <div>
-      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Fahrzeugtyp</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welches Fahrzeug setzen Sie ein?</h2>
-      <p className="text-gray-400 text-sm mb-6">Wir suchen Transportunternehmer für den Nahverkehr mit 7,5 bis 12 Tonnen.</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {VEHICLE_OPTIONS.map((opt) => (
-          <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Truck className="w-5 h-5" />} label={opt.label} desc={opt.desc} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function StepFleet({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  return (
-    <div>
-      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Flottengröße</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Wie viele Fahrzeuge haben Sie?</h2>
-      <p className="text-gray-400 text-sm mb-6">Auch Einzelfahrer sind willkommen. Wir schätzen Partner jeder Größe.</p>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 1 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Wie viele Lieferpositionen hast du durchschnittlich pro Monat?</h2>
+      <p className="text-gray-400 text-sm mb-6">W\u00e4hle die passende Gr\u00f6\u00dfenordnung.</p>
       <div className="grid grid-cols-2 gap-3">
-        {FLEET_OPTIONS.map((opt) => (
-          <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Users className="w-5 h-5" />} label={opt.label} />
-        ))}
+        {DELIVERY_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} />
+          );
+        })}
       </div>
     </div>
   );
 }
 
-function StepCerts({ selected, onToggle }: { selected: string[]; onToggle: (v: string) => void }) {
+function StepGoods({ selected, onToggle }: { selected: string[]; onToggle: (v: string) => void }) {
   return (
     <div>
-      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Qualifikationen</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welche Qualifikationen bringen Sie mit?</h2>
-      <p className="text-gray-400 text-sm mb-6">Mehrfachauswahl möglich. ADR und BKrFQG sind für unsere Touren erforderlich.</p>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 2 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welche Art von Waren versendet ihr haupts\u00e4chlich?</h2>
+      <p className="text-gray-400 text-sm mb-6">Mehrfachauswahl m\u00f6glich.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {CERT_OPTIONS.map((opt) => (
-          <OptionCard key={opt.value} selected={selected.includes(opt.value)} onClick={() => onToggle(opt.value)} icon={<ShieldCheck className="w-5 h-5" />} label={opt.label} desc={opt.desc} multiSelect />
-        ))}
+        {GOODS_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={selected.includes(opt.value)} onClick={() => onToggle(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} desc={opt.desc} multiSelect />
+          );
+        })}
       </div>
     </div>
   );
 }
 
-function StepExperience({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+function StepTarget({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
     <div>
-      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Erfahrung</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Wie lange sind Sie schon als Transportunternehmer tätig?</h2>
-      <p className="text-gray-400 text-sm mb-6">Auch Neueinsteiger mit eigener Flotte können sich bewerben.</p>
-      <div className="grid grid-cols-2 gap-3">
-        {EXPERIENCE_OPTIONS.map((opt) => (
-          <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Clock className="w-5 h-5" />} label={opt.label} />
-        ))}
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 3 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welche Zielgruppen beliefert ihr?</h2>
+      <p className="text-gray-400 text-sm mb-6">W\u00e4hle eure Hauptzielgruppe.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {TARGET_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function StepServices({ selected, onToggle }: { selected: string[]; onToggle: (v: string) => void }) {
+  return (
+    <div>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 4 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welche Leistungen sind f\u00fcr euch am relevantesten?</h2>
+      <p className="text-gray-400 text-sm mb-6">Mehrfachauswahl m\u00f6glich.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {SERVICE_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={selected.includes(opt.value)} onClick={() => onToggle(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} multiSelect />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function StepChallenges({ selected, onToggle }: { selected: string[]; onToggle: (v: string) => void }) {
+  return (
+    <div>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 5 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welche Herausforderungen habt ihr aktuell im Versand oder in der Logistik?</h2>
+      <p className="text-gray-400 text-sm mb-6">Mehrfachauswahl m\u00f6glich.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {CHALLENGE_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={selected.includes(opt.value)} onClick={() => onToggle(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} multiSelect />
+          );
+        })}
       </div>
     </div>
   );
@@ -428,13 +498,74 @@ function StepExperience({ value, onChange }: { value: string; onChange: (v: stri
 function StepRegion({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
     <div>
-      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Standort</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">In welcher Region sind Sie ansässig?</h2>
-      <p className="text-gray-400 text-sm mb-6">Unser Standort in Fröndenberg bedient den Nahverkehr in NRW und angrenzenden Bundesländern.</p>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 6 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welche Regionen wollt ihr beliefert haben?</h2>
+      <p className="text-gray-400 text-sm mb-6">W\u00e4hle euren Lieferbereich.</p>
+      <div className="grid grid-cols-2 gap-3">
+        {REGION_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function StepProducts({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  return (
+    <div>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 7 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Beschreibt eure Produkte kurz und sagt uns, wie viele Materialnummern (SKU) es gibt.</h2>
+      <p className="text-gray-400 text-sm mb-6">Je genauer die Angabe, desto besser k\u00f6nnen wir euch beraten.</p>
+      <div className="relative">
+        <div className="absolute left-3 top-4 text-gray-400">
+          <FileText className="w-4 h-4" />
+        </div>
+        <textarea
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="Hier schreiben"
+          rows={4}
+          className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm text-dark placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green/30 focus:border-green transition-colors resize-none"
+        />
+      </div>
+    </div>
+  );
+}
+
+function StepShop({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  return (
+    <div>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Frage 8 von 8</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Welches Shopsystem nutzt ihr?</h2>
+      <p className="text-gray-400 text-sm mb-6">W\u00e4hle euer aktuelles System.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {REGION_OPTIONS.map((opt) => (
-          <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<MapPin className="w-5 h-5" />} label={opt.label} />
-        ))}
+        {SHOP_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function StepBudget({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  return (
+    <div>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Letzte Frage</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Wie hoch ist euer monatliches Logistik- oder Versandbudget aktuell?</h2>
+      <p className="text-gray-400 text-sm mb-6">Eine grobe Einsch\u00e4tzung gen\u00fcgt.</p>
+      <div className="grid grid-cols-2 gap-3">
+        {BUDGET_OPTIONS.map((opt) => {
+          const Icon = opt.icon;
+          return (
+            <OptionCard key={opt.value} selected={value === opt.value} onClick={() => onChange(opt.value)} icon={<Icon className="w-5 h-5" />} label={opt.label} />
+          );
+        })}
       </div>
     </div>
   );
@@ -445,24 +576,29 @@ function StepContact({ formData, updateField }: { formData: FunnelFormData; upda
 
   return (
     <div>
-      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-2">Kontaktdaten</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Fast geschafft! Wie können wir Sie erreichen?</h2>
-      <p className="text-gray-400 text-sm mb-6">Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.</p>
+      <p className="text-green text-xs font-semibold uppercase tracking-wider mb-1">Gro\u00dfartig! Klingt als k\u00f6nnten wir dir helfen</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-dark mb-2">Wer ist die Ansprechperson f\u00fcr Logistik / Versand in deinem Unternehmen?</h2>
+      <p className="text-gray-400 text-sm mb-6">Wir melden uns zeitnah bei dir.</p>
       <div className="space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <InputField label="Vorname *" value={formData.firstName} onChange={(v) => updateField("firstName", v)} placeholder="Max" icon={<UserCircle className="w-4 h-4" />} />
-          <InputField label="Nachname *" value={formData.lastName} onChange={(v) => updateField("lastName", v)} placeholder="Mustermann" icon={<UserCircle className="w-4 h-4" />} />
-        </div>
-        <InputField label="Telefon *" value={formData.phone} onChange={(v) => updateField("phone", v)} placeholder="+49 123 456 789" type="tel" icon={<Phone className="w-4 h-4" />} />
+        <InputField label="Vor- und Nachname *" value={formData.name} onChange={(v) => updateField("name", v)} placeholder="Vor- und Nachname" icon={<User className="w-4 h-4" />} />
+        <InputField label="Unternehmensname" value={formData.company} onChange={(v) => updateField("company", v)} placeholder="Unternehmensname" icon={<Building2 className="w-4 h-4" />} />
         <div>
-          <InputField label="E-Mail" value={formData.email} onChange={(v) => updateField("email", v)} placeholder="max@unternehmen.de" type="email" icon={<Mail className="w-4 h-4" />} />
-          {emailInvalid && <p className="text-red-500 text-xs mt-1">Bitte geben Sie eine gültige E-Mail-Adresse ein.</p>}
+          <InputField label="Deine E-Mail Adresse *" value={formData.email} onChange={(v) => updateField("email", v)} placeholder="Deine E-Mail Adresse" type="email" icon={<Mail className="w-4 h-4" />} />
+          {emailInvalid && <p className="text-red-500 text-xs mt-1">Bitte gib eine g\u00fcltige E-Mail-Adresse ein.</p>}
         </div>
-        <InputField label="Unternehmen" value={formData.company} onChange={(v) => updateField("company", v)} placeholder="Mustermann Transporte GmbH" icon={<Building2 className="w-4 h-4" />} />
-        <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1.5">Nachricht (optional)</label>
-          <textarea value={formData.message} onChange={(e) => updateField("message", e.target.value)} placeholder="Haben Sie noch etwas mitzuteilen?" rows={3} className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-dark placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green/30 focus:border-green transition-colors resize-none" />
-        </div>
+        <InputField label="Deine Telefonnummer *" value={formData.phone} onChange={(v) => updateField("phone", v)} placeholder="Deine Telefonnummer" type="tel" icon={<Phone className="w-4 h-4" />} />
+        <InputField label="Deine Unternehmenswebseite" value={formData.website} onChange={(v) => updateField("website", v)} placeholder="Deine Unternehmenswebseite" icon={<Globe className="w-4 h-4" />} />
+        <label className="flex items-start gap-3 cursor-pointer group">
+          <input
+            type="checkbox"
+            checked={formData.privacy}
+            onChange={(e) => updateField("privacy", e.target.checked)}
+            className="mt-1 w-4 h-4 rounded border-gray-300 text-green focus:ring-green/30 cursor-pointer"
+          />
+          <span className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors">
+            Ich akzeptiere die Datenschutzbestimmungen
+          </span>
+        </label>
       </div>
     </div>
   );
