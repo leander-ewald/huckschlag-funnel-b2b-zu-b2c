@@ -548,12 +548,12 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link href="/b2b" className="text-white/40 text-sm hover:text-white transition-colors">
-                    B2B &amp; Industrie
+                    B2B &amp; Unternehmen
                   </Link>
                 </li>
                 <li>
                   <Link href="/startup" className="text-white/40 text-sm hover:text-white transition-colors">
-                    Startups &amp; Gr&uuml;nder
+                    Startups &amp; Kleinunternehmen
                   </Link>
                 </li>
                 <li>
