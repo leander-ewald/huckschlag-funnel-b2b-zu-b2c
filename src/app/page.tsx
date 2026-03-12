@@ -539,8 +539,23 @@ export default function HomePage() {
 
             {/* Links */}
             <div>
-              <h4 className="text-white font-semibold mb-4">Rechtliches</h4>
+              <h4 className="text-white font-semibold mb-4">Funnels</h4>
               <ul className="space-y-3">
+                <li>
+                  <Link href="/logistikpartner" className="text-white/40 text-sm hover:text-white transition-colors">
+                    E-Commerce Fulfillment
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/b2b" className="text-white/40 text-sm hover:text-white transition-colors">
+                    B2B &amp; Industrie
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/startup" className="text-white/40 text-sm hover:text-white transition-colors">
+                    Startups &amp; Gr&uuml;nder
+                  </Link>
+                </li>
                 <li>
                   <a href="https://huckschlag-transporte.de/datenschutz" className="text-white/40 text-sm hover:text-white transition-colors">
                     Datenschutz
@@ -550,11 +565,6 @@ export default function HomePage() {
                   <a href="https://huckschlag-transporte.de/impressum" className="text-white/40 text-sm hover:text-white transition-colors">
                     Impressum
                   </a>
-                </li>
-                <li>
-                  <Link href="/logistikpartner" className="text-white/40 text-sm hover:text-white transition-colors">
-                    Logistikl&ouml;sung finden
-                  </Link>
                 </li>
               </ul>
             </div>
