@@ -23,9 +23,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Spedition Huckschlag | E-Commerce Fulfillment & Logistikpartner",
+  title: "Spedition Huckschlag | Logistik, Fulfillment & Warehousing",
   description:
-    "Finde in nur 60 Sekunden die passende Logistiklösung für dein Unternehmen. Spedition Huckschlag — Kontraktlogistik, Warehousing und E-Commerce Fulfillment seit 40+ Jahren.",
+    "Finde in nur 60 Sekunden die passende Logistiklösung für dein Unternehmen. E-Commerce Fulfillment, B2B Logistik oder Startup-Versand — Spedition Huckschlag seit 40+ Jahren.",
   robots: "noindex, nofollow",
 };
 

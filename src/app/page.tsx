@@ -2,24 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
-  Package,
-  Cpu,
-  Users,
-  Clock,
+  ShoppingCart,
+  Building2,
+  Rocket,
   Phone,
   Mail,
   MapPin,
-  Quote,
   CheckCircle2,
-  Truck,
-  Star,
-  Handshake,
-  Bot,
-  Rocket,
-  ShoppingCart,
 } from "lucide-react";
 
-export default function LogistikpartnerPage() {
+export default function HomePage() {
   return (
     <div className="min-h-[100dvh] bg-white">
       {/* ── NAVIGATION ── */}
@@ -35,97 +27,68 @@ export default function LogistikpartnerPage() {
               priority
             />
           </Link>
-          <Link
-            href="/anfrage"
+          <a
+            href="tel:+4923739782"
             className="bg-green hover:bg-green-dark text-white text-sm font-semibold px-5 py-3 rounded-full transition-all shadow-lg shadow-green/25 hover:shadow-green/40"
           >
-            Jetzt starten
-          </Link>
+            <Phone className="w-4 h-4 inline mr-1.5 -mt-0.5" />
+            Anrufen
+          </a>
         </div>
       </nav>
 
       {/* ── HERO ── */}
-      <section className="relative bg-gradient-to-br from-blue to-blue-dark pt-24 pb-14 sm:pt-36 sm:pb-28 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-blue to-blue-dark pt-24 pb-14 sm:pt-36 sm:pb-24 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-green/5 rounded-full blur-3xl" />
           <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-teal/5 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <p className="text-green text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4">
-              E-Commerce Fulfillment aus einer Hand
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Finde in nur 60 Sekunden deine passende Logistikl&ouml;sung
-            </h1>
-            <p className="text-white/70 text-base sm:text-lg mb-8 max-w-xl">
-              Vom Wareneingang &uuml;ber die Kommissionierung bis zur Zustellung &ndash; wir &uuml;bernehmen deinen kompletten Versand. Modern, automatisiert und zuverl&auml;ssig.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/anfrage"
-                className="inline-flex items-center justify-center gap-2 bg-green hover:bg-green-dark text-white font-semibold px-8 py-4 rounded-full transition-all shadow-lg shadow-green/25 hover:shadow-green/40 text-sm sm:text-base"
-              >
-                Logistikl&ouml;sung finden
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <a
-                href="tel:+4923739782"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full transition-all text-sm sm:text-base"
-              >
-                <Phone className="w-4 h-4" />
-                +49 2373 9782 0
-              </a>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <p className="text-3xl sm:text-4xl font-bold text-green mb-1">&gt;50.000</p>
-              <p className="text-white/60 text-sm">qm Lagerfl&auml;che</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <p className="text-3xl sm:text-4xl font-bold text-green mb-1">75.000</p>
-              <p className="text-white/60 text-sm">LKW in drei Netzwerken</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <p className="text-3xl sm:text-4xl font-bold text-green mb-1">100%</p>
-              <p className="text-white/60 text-sm">zufriedene Kunden</p>
-            </div>
-          </div>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-green text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4">
+            Spedition Huckschlag &ndash; Seit &uuml;ber 40 Jahren
+          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 max-w-4xl mx-auto">
+            Finde in nur 60 Sekunden deine passende Logistikl&ouml;sung
+          </h1>
+          <p className="text-white/70 text-base sm:text-lg mb-4 max-w-2xl mx-auto">
+            Egal ob E-Commerce Fulfillment, Kontraktlogistik oder Startup-Versand &ndash; w&auml;hle den passenden Funnel f&uuml;r dein Unternehmen.
+          </p>
         </div>
       </section>
 
-      {/* ── VORTEILE ── */}
+      {/* ── FUNNEL CARDS ── */}
       <section className="py-12 sm:py-20 md:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
             <p className="text-green text-xs font-semibold uppercase tracking-wider mb-3">
-              Deine Vorteile
+              W&auml;hle deinen Bereich
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4">
-              Logistik, Versand &amp; Fulfillment. Aber richtig.
+              Welche L&ouml;sung passt zu dir?
             </h2>
             <p className="text-gray-400 text-sm sm:text-base">
-              Mit einer Kombination aus modernsten Lagertechnologien und langj&auml;hriger Erfahrung bieten wir ma&szlig;geschneiderte L&ouml;sungen f&uuml;r dein Unternehmen.
+              Beantworte wenige Fragen und erhalte ein ma&szlig;geschneidertes Angebot &ndash; kostenlos und unverbindlich.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-5 sm:p-8 hover:border-green/30 hover:shadow-lg transition-all group">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {/* B2B-zu-B2C / Logistikpartner */}
+            <Link
+              href="/b2b-zu-b2c"
+              className="group bg-white border-2 border-gray-200 rounded-2xl p-6 sm:p-8 hover:border-green/40 hover:shadow-xl transition-all"
+            >
               <div className="w-14 h-14 bg-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green/20 transition-colors">
                 <ShoppingCart className="w-7 h-7 text-green" />
               </div>
               <h3 className="text-xl font-bold text-dark mb-3">E-Commerce Fulfillment</h3>
               <p className="text-gray-400 text-sm mb-5">
-                Vom Wareneingang bis zur Zustellung &ndash; alles aus einer Hand.
+                F&uuml;r etablierte Unternehmen, die ihren kompletten Versand auslagern m&ouml;chten &ndash; vom Wareneingang bis zur Zustellung.
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2 mb-6">
                 <li className="flex items-start gap-2 text-sm text-gray-600">
                   <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Shop-System-Integration (Shopify, Shopware, etc.)
+                  AutoStore-System &amp; modernste Lagertechnik
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600">
                   <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
@@ -133,55 +96,31 @@ export default function LogistikpartnerPage() {
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600">
                   <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Automatisierte Retourenabwicklung
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Individuelle Verpackungsl&ouml;sungen
+                  9 Fragen &ndash; ca. 90 Sekunden
                 </li>
               </ul>
-            </div>
+              <span className="inline-flex items-center gap-2 text-green font-semibold text-sm group-hover:gap-3 transition-all">
+                Logistikl&ouml;sung finden
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
 
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-5 sm:p-8 hover:border-green/30 hover:shadow-lg transition-all group">
+            {/* B2B */}
+            <Link
+              href="/b2b"
+              className="group bg-white border-2 border-gray-200 rounded-2xl p-6 sm:p-8 hover:border-green/40 hover:shadow-xl transition-all"
+            >
               <div className="w-14 h-14 bg-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green/20 transition-colors">
-                <Bot className="w-7 h-7 text-green" />
+                <Building2 className="w-7 h-7 text-green" />
               </div>
-              <h3 className="text-xl font-bold text-dark mb-3">AutoStore-System</h3>
+              <h3 className="text-xl font-bold text-dark mb-3">B2B Logistik</h3>
               <p className="text-gray-400 text-sm mb-5">
-                Automatisierte Kommissionierung mit robotergest&uuml;tzter Lagertechnologie.
+                F&uuml;r wachstumsorientierte Unternehmen, die ihre Kapazit&auml;ten erweitern oder Versandkosten optimieren m&ouml;chten.
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2 mb-6">
                 <li className="flex items-start gap-2 text-sm text-gray-600">
                   <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  10.000+ Beh&auml;lter
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Maximale Lagerdichte
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Minimale Fehlerquote
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Skalierbar nach Bedarf
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-5 sm:p-8 hover:border-green/30 hover:shadow-lg transition-all group">
-              <div className="w-14 h-14 bg-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green/20 transition-colors">
-                <Handshake className="w-7 h-7 text-green" />
-              </div>
-              <h3 className="text-xl font-bold text-dark mb-3">Kontraktlogistik</h3>
-              <p className="text-gray-400 text-sm mb-5">
-                Langfristige Partnerschaften f&uuml;r deine gesamte Supply Chain.
-              </p>
-              <ul className="space-y-2.5">
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Individuelle Lagerbewirtschaftung
+                  Kontraktlogistik &amp; Warehousing
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600">
                   <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
@@ -189,165 +128,81 @@ export default function LogistikpartnerPage() {
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600">
                   <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Retourenmanagement &amp; Quality-Checks
+                  6 Fragen &ndash; ca. 60 Sekunden
+                </li>
+              </ul>
+              <span className="inline-flex items-center gap-2 text-green font-semibold text-sm group-hover:gap-3 transition-all">
+                Unternehmensanalyse starten
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+
+            {/* Startup */}
+            <Link
+              href="/startup"
+              className="group bg-white border-2 border-gray-200 rounded-2xl p-6 sm:p-8 hover:border-green/40 hover:shadow-xl transition-all"
+            >
+              <div className="w-14 h-14 bg-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green/20 transition-colors">
+                <Rocket className="w-7 h-7 text-green" />
+              </div>
+              <h3 className="text-xl font-bold text-dark mb-3">Startup Fulfillment</h3>
+              <p className="text-gray-400 text-sm mb-5">
+                F&uuml;r wachsende Start-ups bereits ab 3 Bestellungen pro Tag &ndash; flexibel skalierbar mit deinem Business.
+              </p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
+                  Bereits ab kleinen Mengen
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600">
                   <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  Value-Added-Services nach Bedarf
+                  Shop-System Integration
+                </li>
+                <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <CheckCircle2 className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
+                  6 Fragen &ndash; ca. 60 Sekunden
                 </li>
               </ul>
-            </div>
+              <span className="inline-flex items-center gap-2 text-green font-semibold text-sm group-hover:gap-3 transition-all">
+                Fulfillment-L&ouml;sung finden
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── SCHRITTE ── */}
+      {/* ── STATS ── */}
       <section className="py-12 sm:py-20 md:py-28 bg-gradient-to-br from-blue to-blue-dark relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/2 -translate-y-1/2 -right-48 w-[600px] h-[600px] bg-green/5 rounded-full blur-3xl" />
         </div>
-
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-            <p className="text-green text-xs font-semibold uppercase tracking-wider mb-3">
-              So funktioniert&apos;s
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-              In 3 Schritten zur Logistikl&ouml;sung
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 text-center">
-              <div className="w-14 h-14 bg-green/20 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-green font-bold text-xl">1</span>
-              </div>
-              <h3 className="text-white font-bold text-lg mb-3">Beantworte 8 Fragen</h3>
-              <p className="text-white/60 text-sm">
-                Schildere in nur 60 Sekunden deine Anforderungen &amp; Herausforderungen rund um Logistik, Lagerung oder Versand.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 text-center">
-              <div className="w-14 h-14 bg-green/20 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-green font-bold text-xl">2</span>
-              </div>
-              <h3 className="text-white font-bold text-lg mb-3">Kostenloses Erstgespr&auml;ch</h3>
-              <p className="text-white/60 text-sm">
-                Wir analysieren gemeinsam deinen aktuellen Logistikbedarf und zeigen dir klare Optimierungsm&ouml;glichkeiten auf.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 text-center">
-              <div className="w-14 h-14 bg-green/20 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-green font-bold text-xl">3</span>
-              </div>
-              <h3 className="text-white font-bold text-lg mb-3">Individuelles Konzept</h3>
-              <p className="text-white/60 text-sm">
-                Du erh&auml;ltst ein ma&szlig;geschneidertes Logistikkonzept mit effizienten Lagerprozessen und modernen Technologien wie AutoStore.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── ÜBER UNS ── */}
-      <section className="py-12 sm:py-20 md:py-28 bg-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
             <p className="text-green text-xs font-semibold uppercase tracking-wider mb-3">
               Erfahrung &amp; Kompetenz
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4">
-              Wir haben Erfahrung
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+              Warum Huckschlag?
             </h2>
-            <p className="text-gray-400 text-sm sm:text-base">
-              Huckschlag ist seit mehr als 40 Jahren erfahren in der Logistik, im Versand sowie der gesamten Supply Chain. Wir sind dein verl&auml;sslicher Partner &ndash; heute und in Zukunft.
-            </p>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
-            <div className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center border border-gray-200 shadow-sm">
-              <Clock className="w-8 h-8 text-green mx-auto mb-3" />
-              <p className="text-3xl sm:text-4xl font-bold text-dark mb-1">40+</p>
-              <p className="text-gray-400 text-sm">Jahre Erfahrung</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+              <p className="text-3xl sm:text-4xl font-bold text-green mb-1">40+</p>
+              <p className="text-white/60 text-sm">Jahre Erfahrung</p>
             </div>
-            <div className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center border border-gray-200 shadow-sm">
-              <Users className="w-8 h-8 text-green mx-auto mb-3" />
-              <p className="text-3xl sm:text-4xl font-bold text-dark mb-1">145</p>
-              <p className="text-gray-400 text-sm">Mitarbeitende</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+              <p className="text-3xl sm:text-4xl font-bold text-green mb-1">145</p>
+              <p className="text-white/60 text-sm">Mitarbeitende</p>
             </div>
-            <div className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center border border-gray-200 shadow-sm">
-              <Package className="w-8 h-8 text-green mx-auto mb-3" />
-              <p className="text-3xl sm:text-4xl font-bold text-dark mb-1">80.000</p>
-              <p className="text-gray-400 text-sm">Paletten Kapazit&auml;t</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+              <p className="text-3xl sm:text-4xl font-bold text-green mb-1">80.000</p>
+              <p className="text-white/60 text-sm">Paletten Kapazit&auml;t</p>
             </div>
-            <div className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center border border-gray-200 shadow-sm">
-              <Cpu className="w-8 h-8 text-green mx-auto mb-3" />
-              <p className="text-3xl sm:text-4xl font-bold text-dark mb-1">10.000</p>
-              <p className="text-gray-400 text-sm">AutoStore Beh&auml;lter</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+              <p className="text-3xl sm:text-4xl font-bold text-green mb-1">10.000</p>
+              <p className="text-white/60 text-sm">AutoStore Beh&auml;lter</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIAL ── */}
-      <section className="py-12 sm:py-20 md:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 border border-gray-200 shadow-sm text-center">
-            <Quote className="w-10 h-10 text-green/30 mx-auto mb-6" />
-            <blockquote className="text-base sm:text-lg md:text-xl lg:text-2xl text-dark font-medium leading-relaxed mb-6 sm:mb-8">
-              &bdquo;2024 wird E-Commerce weiter an Bedeutung gewinnen. Als Logistiker haben wir uns darauf vorbereitet: Mit AutoStore, digitalen Prozessen und einem Team, das f&uuml;r unsere Kunden alles gibt. Wir sind nicht einfach ein Lager &ndash; wir sind Ihr Wachstumspartner.&ldquo;
-            </blockquote>
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-14 h-14 bg-blue/10 rounded-full flex items-center justify-center overflow-hidden p-2">
-                <Image
-                  src="/huckschlag-logo.svg"
-                  alt="Huckschlag"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="text-left">
-                <p className="font-bold text-dark">Thomas Huckschlag</p>
-                <p className="text-gray-400 text-sm">Gesch&auml;ftsf&uuml;hrender Gesellschafter</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FINAL CTA ── */}
-      <section className="py-12 sm:py-20 md:py-28 bg-gradient-to-br from-blue to-blue-dark relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-green/5 rounded-full blur-3xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-            Bereit f&uuml;r die n&auml;chste Stufe?
-          </h2>
-          <p className="text-white/70 text-base sm:text-lg mb-8 max-w-xl mx-auto">
-            Finde in nur 60 Sekunden heraus, welche Logistikl&ouml;sung perfekt zu deinem Unternehmen passt.
-          </p>
-          <Link
-            href="/anfrage"
-            className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white font-semibold px-10 py-4 rounded-full transition-all shadow-lg shadow-green/25 hover:shadow-green/40 text-base sm:text-lg"
-          >
-            In 60 Sekunden zur Logistikl&ouml;sung
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/40">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              Kostenlos
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              Unverbindlich
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              In 60 Sekunden
-            </span>
           </div>
         </div>
       </section>
